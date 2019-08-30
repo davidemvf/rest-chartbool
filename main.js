@@ -24,6 +24,10 @@ function getData() {
       console.log("nomi: " + names);
       console.log("vendite: " + sales);
 
+      var months = getLabel();
+      sellerSelector(names);
+      monthSelector(months);
+
 
       var ctx = document.getElementById('myChart').getContext('2d');
       var myChart = new Chart(ctx, {
@@ -122,4 +126,30 @@ function getLabelDoughnut(data) {
 
   return(salesmen);
 
+}
+
+// funzione per costruire il selettore di venditori
+function sellerSelector(array) {
+  var source   = document.getElementById("item-template").innerHTML;
+  var template = Handlebars.compile(source);
+
+  for (var i=0; i<array.length; i++) {
+    var context = {option: array[i]};
+    var html    = template(context);
+
+    $(".salemanSelect").append(html);
+  }
+};
+
+// funzione per costruire il selettore di venditori
+function monthSelector(array) {
+  var source   = document.getElementById("item-template").innerHTML;
+  var template = Handlebars.compile(source);
+
+  for (var i=0; i<array.length; i++) {
+    var context = {option: array[i]};
+    var html    = template(context);
+
+    $(".monthSelect").append(html);
+  }
 }

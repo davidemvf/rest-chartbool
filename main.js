@@ -29,6 +29,8 @@ function getData() {
       monthSelector(months);
 
 
+
+
       var ctx = document.getElementById('myChart').getContext('2d');
       var myChart = new Chart(ctx, {
         type: 'line',
@@ -153,3 +155,26 @@ function monthSelector(array) {
     $(".monthSelect").append(html);
   }
 }
+
+//funzione per aggiungere nuovi guadagni
+
+function newSale() {
+var nameSelected = $(".salemanSelect").val();
+var monthSelected = $(".monthSelect").val();
+var amount = parseInt($("#amount").val());
+console.log(nameSelected);
+console.log(monthSelected);
+console.log(amount);
+
+$.ajax({
+  url: "http://157.230.17.132:4007/sales",
+  method:"POST",
+  data:{"salesman": nameSelected, "amount": amount, "date": monthSelected},
+  success: function() {
+
+  }
+})
+
+};
+
+newSale();

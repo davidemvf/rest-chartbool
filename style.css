@@ -8,3 +8,27 @@
   user-select: none;
   list-style: none;
 }
+
+.container {
+  width: 1200px;
+
+  margin:0 auto;
+}
+
+.charts {
+  display: flex;
+}
+
+.lineChart {
+  /* height: 80px; */
+  width: 50%;
+  border: 1px solid gray;
+  padding: 10px;
+}
+
+.doughnutChart {
+  width: 50%;
+  border: 1px solid gray;
+  border-left: none;
+  padding: 10px;
+}

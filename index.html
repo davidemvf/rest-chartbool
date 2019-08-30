@@ -29,6 +29,30 @@
     <title></title>
   </head>
   <body>
-  <canvas id="myChart"></canvas>
+    <div class="container">
+      <header>
+        <select class="salemanSelected">
+          <option value="volvo">Volvo</option>
+          <option value="saab">Saab</option>
+          <option value="mercedes">Mercedes</option>
+          <option value="audi">Audi</option>
+        </select>
+      </header>
+
+      <div class="charts">
+        <div class="lineChart">
+          <canvas id="myChart"></canvas>
+        </div>
+        <div class="doughnutChart">
+          <canvas id="myChartTwo"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- TEMPLATE: selector -->
+    <script id="item-template" type="text/x-handlebars-template">
+      <option value="{{option}}">{{option}}</option>
+    </script>
+
   </body>
 </html>

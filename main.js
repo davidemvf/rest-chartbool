@@ -5,7 +5,22 @@ $(document).ready(init);
 
 function init() {
   moment.locale("it");
+
   getData();
+  $("#add").click(newSale);
+
+  // blocco di codice usato per cancellare oggetti dal server
+  // for (var i=38; i<53; i++) {
+  //
+  //   $.ajax({
+  //   url: "http://157.230.17.132:4007/sales/" + i,
+  //   method:"DELETE",
+  //   success: function() {
+  //     console.log("cancellato: " + i);
+  //   }
+  // //
+  // })
+  // }
 
 }
 
@@ -159,22 +174,49 @@ function monthSelector(array) {
 //funzione per aggiungere nuovi guadagni
 
 function newSale() {
-var nameSelected = $(".salemanSelect").val();
-var monthSelected = $(".monthSelect").val();
-var amount = parseInt($("#amount").val());
-console.log(nameSelected);
-console.log(monthSelected);
-console.log(amount);
 
-$.ajax({
-  url: "http://157.230.17.132:4007/sales",
-  method:"POST",
-  data:{"salesman": nameSelected, "amount": amount, "date": monthSelected},
-  success: function() {
+  var nameSelected = $(".salemanSelect").val();
+  var monthSelected = $(".monthSelect").val();
+  var month = parseInt(moment().month($(".monthSelect").val()).format("MM"));
+  var date = "01/" + month + "/2017";
+  // var date = dateOne.format("DD/MM/YYYY")
+  var amount = Number($("#amount").val());
+  console.log(nameSelected);
+  console.log(monthSelected);
+  console.log(amount);
+  console.log(month);
 
-  }
-})
+  $.ajax({
+    url: "http://157.230.17.132:4007/sales",
+    method:"POST",
+    data:{"salesman": nameSelected, "amount": amount, "date": date},
+    success: function() {
+      $(".salemanSelect").html("");
+      $(".monthSelect").html("");
+      getData();
+    }
+
+  })
 
 };
 
-newSale();
+// funzione per convertire i mesi in numeri
+// function getMonthNumber() {
+//   var monthsName = moment.months();
+//   var obj = {mese: "numero"};
+//   var months = Object.keys(monthsName);
+//   console.log("mesi: " + months);
+//
+//   for (var i=0; i<12; i++) {
+//     obj.mese += monthsName;
+//     obj.numero += i;
+//   }
+//   console.log("numero mesi: " + months);
+//   console.log("ciao");
+//   console.log("oggetto: " + obj);
+//   console.log(obj.gennaio);
+//
+//   return(obj.gennaio);
+//
+// }
+// getMonthNumber();

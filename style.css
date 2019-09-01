@@ -15,6 +15,11 @@
   margin:0 auto;
 }
 
+header {
+  border: 1px solid gray;
+  padding: 20px;
+}
+
 .charts {
   display: flex;
 }
@@ -24,6 +29,7 @@
   width: 50%;
   border: 1px solid gray;
   padding: 10px;
+  border-top: none;
 }
 
 .doughnutChart {
@@ -31,4 +37,5 @@
   border: 1px solid gray;
   border-left: none;
   padding: 10px;
+  border-top: none;
 }

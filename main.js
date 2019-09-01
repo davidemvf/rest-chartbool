@@ -42,6 +42,7 @@ function getData() {
       var months = getLabel();
       sellerSelector(names);
       monthSelector(months);
+      getSaleQuarter(data);
 
 
 
@@ -87,6 +88,27 @@ function getData() {
                 ]
             }]
         }
+
+      });
+
+      var ctxThree = document.getElementById('myChartThree').getContext('2d');
+      var myBarChart = new Chart(ctxThree, {
+        type: 'bar',
+        data: {
+            labels: names,
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+                ]
+            }]
+        },
 
       });
     },
@@ -172,7 +194,6 @@ function monthSelector(array) {
 }
 
 //funzione per aggiungere nuovi guadagni
-
 function newSale() {
 
   var nameSelected = $(".salemanSelect").val();
@@ -199,3 +220,37 @@ function newSale() {
   })
 
 };
+
+// funzioneper suddividere i ricavi nei quarter
+function getSaleQuarter(data) {
+  var firstQuarter = [];
+  var secondQuarter = [];
+  var thirdQuarter = [];
+  var fourthQuarter = [];
+  console.log(data.length);
+
+
+  for (var i=0; i<data.length; i++) {
+    var months = moment.months();
+    var month = data[i].date;
+    var monthnum = moment(data[i].date, "DD/MM/YYYY").format("MMMM");
+    console.log("Dd" + month);
+    console.log(monthnum);
+      if (monthnum === "gennaio" || monthnum ==="febbraio" || monthnum === "marzo") {
+        firstQuarter.push(data[i].amount);
+      } else if (monthnum === "aprile" || monthnum ==="maggio" || monthnum === "giugno") {
+        secondQuarter.push(data[i].amount);
+      } else if (monthnum === "luglio" || monthnum ==="agosto" || monthnum === "settembre") {
+        thirdQuarter.push(data[i].amount);
+      } else {
+        fourthQuarter.push(data[i].amount);
+      }
+  }
+  console.log(firstQuarter);
+  console.log(secondQuarter);
+  console.log(thirdQuarter);
+  console.log(fourthQuarter);
+
+
+
+}

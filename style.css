@@ -39,3 +39,11 @@ header {
   padding: 10px;
   border-top: none;
 }
+
+.bar-chart{
+  height: 400px;
+  width: 800px;
+  margin: 0 auto;
+  border: 1px solid gray;
+  border-top: none;
+}

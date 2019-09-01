@@ -199,24 +199,3 @@ function newSale() {
   })
 
 };
-
-// funzione per convertire i mesi in numeri
-// function getMonthNumber() {
-//   var monthsName = moment.months();
-//   var obj = {mese: "numero"};
-//   var months = Object.keys(monthsName);
-//   console.log("mesi: " + months);
-//
-//   for (var i=0; i<12; i++) {
-//     obj.mese += monthsName;
-//     obj.numero += i;
-//   }
-//   console.log("numero mesi: " + months);
-//   console.log("ciao");
-//   console.log("oggetto: " + obj);
-//   console.log(obj.gennaio);
-//
-//   return(obj.gennaio);
-//
-// }
-// getMonthNumber();

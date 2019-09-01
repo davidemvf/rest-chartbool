@@ -42,7 +42,7 @@ function getData() {
       var months = getLabel();
       sellerSelector(names);
       monthSelector(months);
-      getSaleQuarter(data);
+
 
 
 
@@ -95,10 +95,10 @@ function getData() {
       var myBarChart = new Chart(ctxThree, {
         type: 'bar',
         data: {
-            labels: names,
+            labels: ["Q1", "Q2", "Q3", "Q4"],
             datasets: [{
                 label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
+                data: getSaleQuarter(data),
                 backgroundColor: [
                 'rgba(255, 99, 132, 0.2)',
                 'rgba(54, 162, 235, 0.2)',
@@ -223,33 +223,40 @@ function newSale() {
 
 // funzioneper suddividere i ricavi nei quarter
 function getSaleQuarter(data) {
-  var firstQuarter = [];
-  var secondQuarter = [];
-  var thirdQuarter = [];
-  var fourthQuarter = [];
+  // var firstQuarter = [];
+  // var secondQuarter = [];
+  // var thirdQuarter = [];
+  // var fourthQuarter = [];
+  var quarters = new Array(4).fill(0);
   console.log(data.length);
+  console.log(quarters);
 
 
   for (var i=0; i<data.length; i++) {
     var months = moment.months();
     var month = data[i].date;
+    var amount = parseInt(data[i].amount);
     var monthnum = moment(data[i].date, "DD/MM/YYYY").format("MMMM");
-    console.log("Dd" + month);
-    console.log(monthnum);
+    // console.log("Dd" + month);
+    // console.log(monthnum);
       if (monthnum === "gennaio" || monthnum ==="febbraio" || monthnum === "marzo") {
-        firstQuarter.push(data[i].amount);
+        // firstQuarter.push(data[i].amount);
+        quarters[0] += amount;
       } else if (monthnum === "aprile" || monthnum ==="maggio" || monthnum === "giugno") {
-        secondQuarter.push(data[i].amount);
+        quarters[1] += amount;
       } else if (monthnum === "luglio" || monthnum ==="agosto" || monthnum === "settembre") {
-        thirdQuarter.push(data[i].amount);
+        quarters[2] += amount;
       } else {
-        fourthQuarter.push(data[i].amount);
+        quarters[3] += amount;
       }
   }
-  console.log(firstQuarter);
-  console.log(secondQuarter);
-  console.log(thirdQuarter);
-  console.log(fourthQuarter);
+  console.log(quarters);
+  return(quarters);
+
+  // console.log(firstQuarter);
+  // console.log(secondQuarter);
+  // console.log(thirdQuarter);
+  // console.log(fourthQuarter);
 
 
 

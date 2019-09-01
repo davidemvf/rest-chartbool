@@ -200,7 +200,6 @@ function newSale() {
   var monthSelected = $(".monthSelect").val();
   var month = parseInt(moment().month($(".monthSelect").val()).format("MM"));
   var date = "01/" + month + "/2017";
-  // var date = dateOne.format("DD/MM/YYYY")
   var amount = Number($("#amount").val());
   console.log(nameSelected);
   console.log(monthSelected);
@@ -221,12 +220,9 @@ function newSale() {
 
 };
 
-// funzioneper suddividere i ricavi nei quarter
+// funzione per suddividere i ricavi nei quarter
 function getSaleQuarter(data) {
-  // var firstQuarter = [];
-  // var secondQuarter = [];
-  // var thirdQuarter = [];
-  // var fourthQuarter = [];
+
   var quarters = new Array(4).fill(0);
   console.log(data.length);
   console.log(quarters);
@@ -237,8 +233,7 @@ function getSaleQuarter(data) {
     var month = data[i].date;
     var amount = parseInt(data[i].amount);
     var monthnum = moment(data[i].date, "DD/MM/YYYY").format("MMMM");
-    // console.log("Dd" + month);
-    // console.log(monthnum);
+
       if (monthnum === "gennaio" || monthnum ==="febbraio" || monthnum === "marzo") {
         // firstQuarter.push(data[i].amount);
         quarters[0] += amount;
@@ -252,12 +247,4 @@ function getSaleQuarter(data) {
   }
   console.log(quarters);
   return(quarters);
-
-  // console.log(firstQuarter);
-  // console.log(secondQuarter);
-  // console.log(thirdQuarter);
-  // console.log(fourthQuarter);
-
-
-
 }
